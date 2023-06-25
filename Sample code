@@ -1,0 +1,16 @@
+#include <OneWire.h>
+#include <DallasTemperature.h>
+// Data wire is plugged into pin 2 on the Arduino #define ONE_WIRE_BUS 2
+// Setup a oneWire instance to communicate with any OneWire devices OneWire oneWire(ONE_WIRE_BUS);
+// Pass our oneWire reference to Dallas Temperature sensor DallasTemperature sensors(&oneWire);
+void setup(void) {
+// Start serial communication Serial.begin(9600);
+// Initialize the sensor
+sensors.begin(); }
+void loop(void) {
+// Get the temperature from the sensor sensors.requestTemperatures();
+float temperature = sensors.getTempCByIndex(0);
+// Print the temperature to the serial monitor Serial.print("Temperature: "); Serial.print(temperature); Serial.println("°C");
+// Wait for a second before taking another reading
+delay(1000); }
+In this code, we use the OneWire library to communicate with the temperature sensor and the DallasTemperature library to read the temperature data. We start by initializing the sensor in the setup function and then loop through taking temperature readings and printing them to the serial monitor. The delay function is used to wait for a second before taking another reading.
